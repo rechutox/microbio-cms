@@ -1,0 +1,46 @@
+# APP
+sitename: Microbio CMS
+cookie_lifetime: 1209600
+app_session_segment: RechutoX\MicrobioCMS\App
+
+navbar:
+  home:
+    title: Home
+    link: /
+  about:
+    title: About
+    link: /about
+  pages:
+    title: Listing
+    link: /pages
+
+user_accounts:
+  admin:
+    password: 12345
+    data:
+      name: Micro Admin
+      email: admin@microbio.com
+
+# THEMES
+theme_folder: /themes
+theme: default
+
+theme_default_templates:
+  home: index.twig
+  record: page.twig
+  records: listing.twig
+  create_record: create-record.twig
+  edit_record: edit-record.twig
+  login: login.twig
+
+# FILESYSTEM
+lock_filesystem_writes: true
+
+# TWIG
+twig:
+  debug: false
+  auto_reload: false
+  cache_path: /cache/views
+  use_cache: true
+  strict_variables: true
+  autoescape: true
