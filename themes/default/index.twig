@@ -1,0 +1,46 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+	<h1><i class="fa fa-fire"></i> Hola Mundo!</h1><hr>
+	<p>Este es mi primer CMS (y primer flat-file) xD</p>
+
+	<h2>Características</h2>
+	<ul>
+		<li>Es flat-file, osea no necesito una pinche base de datos que me relentejee la vaina.</li>
+		<li>Es temificable, osea que puedo aplicar cualquier tema que me de la gana.</li>
+		<li>Es ultra rápido (creo), osea que apenas necesite algunas librerías para hacerla... de a bolas que va a ser rápida xD</li>
+		<li>Es fácil de extender, osea porque lo hice yo mismo pues...</li>
+		<li>Podría ser mejor, osea claro es un experimento men por dios!</li>
+	</ul>
+
+	<h2>Funcionalidades</h2>
+	<ul>
+		<li>Las paginas se crean en formato markdown y se almacenan en la carpeta content</li>
+		<li>El enrutamiento se basa en el nombre del archivo como slug</li>
+		<li>Puede ver/crear/editar/eliminar paginas</li>
+		<li>Autenticación vía ACL en el archivo de configuración</li>
+		<li>Los menús de navegación se definen en la config</li>
+		<li>Protección contra csrf</li>
+		<li>Protección contra xss proporcionada por twig... bueno no realente pero cabe la posibilidad</li>
+		<li>Puedes tirar flashes papá!</li>
+		<li>Tiene hasta consola weon! para limpiar la cache de twig :3 ejecuta <pre><code>php micro</code></pre> pa' que veas!</li>
+		<li>Mas nada xD pero eso es lo único que mucha gente necesita...</li>
+	</ul>
+
+	<h2>Cosas por mejorar</h2>
+	<ul>
+		<li>Refactorizar... el codigo fuente esta contenido en solo dos archivos: el index.php y otro en /app/</li>
+		<li>Organizar el archvo de configuracion</li>
+		<li>Cargar archivos de configuracion de los temas, para importar metadatos y cosas asi...</li>
+		<li>Widgets!! We need widgets!!!! Actualmente no se puede colocar mas que texto/html en las paginas :/</li>
+		<li>Blocks!! Posibilidad de incrustar otras vistas dentro de las paginas... o algo asi</li>
+		<li>Emmmm.... no se que mas!</li>
+	</ul>
+
+	<h3>Le Finale</h3>
+	<p>
+		Este fue un experimento bastante rápido y divertido. Se experimentó con un sistema de archivos virtual y el enrutamiento dinámico a los archivos contenidos en dicho espacio ademas de la creación de una consola para manejar tareas comunes.
+	</p>
+
+{% endblock %}

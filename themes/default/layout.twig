@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ config.sitename }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/theme.css') }}">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="brand"><a href="/"><i class="fa fa-bug"></i> {{ config.sitename }}</a></div>
+        <nav class="pull-right">
+          {% for nav in config.navbar %}
+            <a href="{{ nav.link }}">{{ nav.title }}</a>
+            {{ loop.last ? '' : '|' }}
+          {% endfor %}
+          {% if auth().isValid() %}
+            <a href="/logout">Logout</a>
+          {% else %}
+            <a href="/login">Login</a>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
+    <section class="main container">
+      <div class="containers">
+        {% include 'alerts.twig' %}
+        {% block content %}
+        {% endblock %}
+        {#{ debug(session())|raw }#}
+      </div>
+    </section>
+    <footer>
+      <div class="principal">
+        <div class="container">
+          <section>
+            <h5>Acerca de este sitio</h5>
+            <p>
+              Este es un CMS de tipo flat-file experimental.
+            </p>
+            <small>Esta pagina fue procesada en {{ app_render_time() }} segundos</small>
+          </section>
+        </div>
+      </div>
+      <div class="final">
+        <div class="container">
+          <span>Desarrollado por <a href="mailto:tribality.tech@gmail.com">Jesus Veracierta</a></span>
+          <span class="pull-right">
+            Hecho con <span style="color:#f6a"><i class="fa fa-heart-o"></i></span> en
+            <span style="color:#ff6">Ven</span><span style="color:#66f">ezu</span><span style="color:#f66">ela</span>
+          </span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

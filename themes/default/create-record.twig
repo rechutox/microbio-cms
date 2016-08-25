@@ -1,0 +1,15 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+	<h1>Create Page</h1><hr>
+
+	<form action="/microbio/create-page" method="post">
+		{{ csrf_field()|raw }}
+		<input name="title" placeholder="Title"><br>
+		<input name="slug" placeholder="Slug" required><br>
+		<textarea name="body" placeholder="Body" required></textarea><br>
+		<button type="submit">Save</button>
+	</form>
+
+{% endblock %}

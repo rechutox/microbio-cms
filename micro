@@ -1,0 +1,81 @@
+<?php
+
+require_once '/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Formatter\OutputFormatter;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Pimple\Container;
+use Noodlehaus\Config;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Adapter\Local;
+use Phroute\Phroute\RouteCollector;
+use Phroute\Phroute\Dispatcher;
+
+
+//$app        = new Container();
+//$config     = $app['config']     = function($app) { return new Config('config.yml'); };
+//$filesystem = $app['filesystem'] = function($app) { return new Filesystem(new Local(__DIR__.'/content', $app['config']['lock_filesystem_writes'])); };
+//$app['router']     = function($app) { return new RouteCollector(); };
+//$app['markdown']   = function($app) { return new Parsedown(); };
+/*
+$app['twig']       = function($app) {
+    return new Twig_Environment(
+        new Twig_Loader_Filesystem(__DIR__.$app['config']['theme_folder'].'/'.$app['config']['theme'], [
+            'debug'            => $app['config']['twig']['debug'],
+            'cache'            => $app['config']['twig']['cache'] != false ? __DIR__.$app['config']['twig']['cache'] : false,
+            'auto_reload'      => $app['config']['twig']['auto_reload'],
+            'strict_variables' => $app['config']['twig']['strict_variables'],
+            'autoescape'       => $app['config']['twig']['autoescape'],
+    ]));
+};
+*/
+
+class CacheClearViewsCommand extends Command
+{
+    protected function configure()
+    {
+        $this
+            ->setName('cache:clear-views')
+            ->setDescription('Clears the views cache folder')
+            ->setHelp('Clears the views cache folder using the path defined in config.yml with key twig.cache_path');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $output->setFormatter(new OutputFormatter(true));
+        $config     = new Config('config.yml');
+        $filesystem = new Filesystem(new Local(__DIR__));
+        $dir = $config['twig']['cache_path'];
+
+        $output->writeln([
+            '',
+            ' +===========================+',
+            ' | clearing twig views cache |',
+            ' +===========================+',
+            '',
+        ]);
+
+        $output->writeln(' * <info>Deleting <comment>'.$dir.'</> folder...</>');
+
+        $filesystem->deleteDir($dir);
+
+        $output->writeln(' * <info>Creating <comment>'.$dir.'</> folder...</>');
+
+        $filesystem->createDir($config['twig']['cache_path']);
+
+        $output->writeln(' * <info>DONE!</>');
+    }
+}
+
+
+$console = new Application('Microbio Console Application', '1.0');
+$console->add(new CacheClearViewsCommand());
+$console->run();

@@ -1,0 +1,10 @@
+{#{ debug(session_alerts())|raw }#}
+{% for flash in session_alerts() %}
+<div class="alert {{ flash.type }}">
+	{% if flash.html %}
+		{{ flash.message|raw }}
+	{% else %}
+		{{ flash.message }}
+	{% endif %}
+</div>
+{% endfor %}

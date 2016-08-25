@@ -1,0 +1,18 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+	<h1>Pages Listing</h1><hr>
+
+    <ul>
+        {% for file in files %}
+            <li><a href="{{ file.link }}">{{ file.pagename }} [{{ file.path }}]</a></li>
+        {% endfor %}
+    </ul>
+
+    {% if auth().isValid() %}
+    	<hr>
+    	<a href="/create-page">Create a new page</a>
+	{% endif %}
+
+{% endblock %}

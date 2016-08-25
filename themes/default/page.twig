@@ -1,0 +1,15 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+	{{ page.body|raw }}
+
+    {% if auth().isValid() %}
+		<br><br><hr>
+		<p>
+			<a href="/{{page.slug}}/edit">Edit</a> |
+			<a href="/{{page.slug}}/delete" onClick="return confirm('Esta absolutamente seguro?')">Delete</a>
+		</p>
+	{% endif %}
+
+{% endblock %}

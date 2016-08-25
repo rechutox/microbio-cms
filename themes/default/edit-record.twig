@@ -1,0 +1,16 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+	<h1>Edit Page</h1><hr>
+
+	<form action="/microbio/update-page" method="post">
+		{{ csrf_field()|raw }}
+		<input name="title" placeholder="Title" value="{{ record.name }}"><br>
+		<input name="slug" placeholder="Slug" value="{{ record.slug }}" required><br>
+		<textarea name="body" placeholder="Body" required>{{ record.body }}</textarea><br>
+		<button type="submit">Update</button>
+		<input type="hidden" name="old_slug" value="{{ record.slug }}">
+	</form>
+
+{% endblock %}
