@@ -362,9 +362,18 @@ $app['router']->group(['before' => 'statsStart', 'after' => 'statsComplete'], fu
         $dir_cont = $app['filesystem']->listContents('/', true);
         $files = [];
         foreach ($dir_cont as $entry) {
-            if ($entry['type'] == 'file') {
+            $tokens = explode('.', $entry['path']);
+            $name = '';
+            $ext = '';
+            if (count($tokens) == 1)
+                $ext = $tokens[0];
+            else {
+                $name = $tokens[0];
+                $ext  = $tokens[1];
+            }
+            if ($entry['type'] == 'file' && $ext == 'md') {
                 $file = [];
-                $file['pagename'] = str_replace('.md', '', $entry['path']);
+                $file['pagename'] = $name;
                 $file['path'] = $entry['path'];
                 $file['link'] = '/'.$file['pagename'];
                 $files[] = $file;
