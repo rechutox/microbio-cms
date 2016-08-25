@@ -1,0 +1,37 @@
+# App specific stuff. Don't put config files, databases or 'vendor' in Git.
+cache/
+content/
+vendor/
+
+# Unless you want to store vendor's "state" in your Git repo.
+composer.lock
+
+# NPM, Gulp and Grunt stuff
+node_modules
+bower_components
+npm-debug.log
+.sass-cache
+
+# File-system cruft and temporary files
+scrutinizer.phar
+php-cs-fixer.phar
+.DS_Store
+.idea
+__*
+._*
+web
+Vagrantfile
+.vagrant*
+*.sublime-*
+/tags
+.*.swp
+.swp
+*.lock
+.buildpath
+.project
+/bolt.log
+coverage.xml
+pimple.json
+dump.php
+# .gitignore
+!.gitignore
