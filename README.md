@@ -1,4 +1,5 @@
 # Microbio CMS
+It's a super simple flat-file CMS
 Este es mi primer CMS (y primer flat-file) xD
 
 ## Características
