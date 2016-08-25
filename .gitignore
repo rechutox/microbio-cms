@@ -1,6 +1,4 @@
 # App specific stuff. Don't put config files, databases or 'vendor' in Git.
-cache/
-content/
 vendor/
 
 # Unless you want to store vendor's "state" in your Git repo.
