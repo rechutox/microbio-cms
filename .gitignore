@@ -33,3 +33,5 @@ pimple.json
 dump.php
 # .gitignore
 !.gitignore
+
+config.yml
